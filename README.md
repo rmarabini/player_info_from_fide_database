@@ -1,6 +1,6 @@
 # FIDE Ratings Scripts
 
-This repository contains two Python scripts to download, store, and query FIDE chess player ratings from the FIDE database. The first script downloads and processes a list of FIDE players, storing their information in an SQLite database. The second script queries the database and outputs player records based on input FIDE IDs.
+This repository contains two Python scripts to download, store, and query FIDE chess player ratings from the FIDE database. The first script downloads and processes a list of FIDE players, storing their information in the local file. The second script queries the file and outputs player records based on input FIDE IDs.
 
 ## Table of Contents
 
@@ -34,18 +34,19 @@ pip install tabulate
 
 #### FIDE Ratings Download and Storage Script
 
-This script downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it as:
+This script downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it from a terminal (__cmd__) as:
 
 ```
 python fide_download.py
 ```
+or alternativelly just double click it
 
 The player information includes fields such as fide_id, name, country, sex, title, rating, and others.
 No command-line options are required for this script, as it automatically downloads and processes the FIDE data.
 
 #### Query FIDE Records and Output to CSV
 
-This script takes a file with FIDE IDs (one per line), retrieves corresponding records from the SQLite database, and outputs the results to a CSV file and also displays them in the terminal.
+This script takes a file with FIDE IDs (one per line), retrieves the corresponding records from the downloaded informaion, and outputs the results to a CSV file. The results are also displayed on the console.
 
 ```
 python fide_query.py <input_file> <output_file.csv> --fields <fields> --database <database>
@@ -83,13 +84,11 @@ python fide_query.py fide_ids.txt output.csv --fields fide_id name country ratin
 
 ### FIDE Ratings Download and Storage Script
 
-To download and store the FIDE ratings data in a local SQLite database:
+To download and store the FIDE ratings data in a local file:
 
 ```
 python fide_download.py
 ```
-
-This script will download the latest ratings data, process it, and store it in an SQLite database named fide_ratings.db.
 
 ### Query FIDE Records and Output to CSV
 
