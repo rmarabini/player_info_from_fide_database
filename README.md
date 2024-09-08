@@ -40,7 +40,7 @@ This script downloads the players_list_xml.zip file from the FIDE website and pr
 ```
 python fide_download.py
 ```
-or alternativelly just double click it.  Depending on your computer and conectivity this step may take a few minutes.
+or alternativelly just double click it.  Depending on your computer and conectivity this step may take one or two  minutes.
 
 The player information includes fields such as fide_id, name, country, sex, title, rating, and others.
 No command-line options are required for this script, as it automatically downloads and processes the FIDE data.
