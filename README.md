@@ -13,7 +13,7 @@ This repository contains two Python scripts to download, store, and query FIDE c
  
 ## Requirements
 
-To run these scripts, you need Python 3 (https://www.howtogeek.com/197947/how-to-install-python-on-windows/) and the following Python libraries:
+To run these scripts, you need Python 3 (instalacion tecleando en la terminal ``` winget install python3```) and the following Python libraries:
 
     * sqlite3 (part of the Python standard library)
     * urllib (for downloading the FIDE files)
@@ -47,7 +47,7 @@ No command-line options are required for this script, as it automatically downlo
 
 #### Query FIDE Records and Output to CSV
 
-This script takes a file with FIDE IDs (one per line), retrieves the corresponding records from the downloaded informaion, and outputs the results to a CSV file. The results are also displayed on the console.
+This script takes a file with FIDE IDs (one per line), retrieves the corresponding records from the downloaded information, and outputs the results to a CSV file. The results are also displayed on the console.
 
 ```
 python fide_query.py <input_file> <output_file.csv> --fields <fields> --database <database>
