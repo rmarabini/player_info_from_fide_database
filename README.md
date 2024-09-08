@@ -26,6 +26,7 @@ You will also need to install sqlite3 (https://www.sqlitetutorial.net/download-i
 
 ## Installation
 Download the files fide_download.py and fide_query.py from this repository and all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
+Open a terminal (__cmd__)  and type:
 
 ```
 pip install tabulate
