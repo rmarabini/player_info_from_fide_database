@@ -21,7 +21,7 @@ To run these scripts, you need Python 3 (https://www.howtogeek.com/197947/how-to
     * tabulate (for pretty printing the output on the terminal)
     * argparse (for handling command-line arguments)
 
-You will also need to install sqlite3 (https://www.sqlitetutorial.net/download-install-sqlite/)
+You will also need to install sqlite3 (teclea en una erminal ``` winget install sqlite.sqlite ```)
 
 
 ## Installation
