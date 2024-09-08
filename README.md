@@ -35,7 +35,7 @@ pip install tabulate
 
 #### FIDE Ratings Download and Storage Script
 
-This script downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it from a terminal (__cmd__) as:
+This script downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it from a terminal (__cmd__) as (in the terminal you must be in the same directory in which you downloaded the scripts):
 
 ```
 python fide_download.py
