@@ -13,7 +13,7 @@ This repository contains two Python scripts to download, store, and query FIDE c
  
 ## Requirements
 
-To run these scripts, you need Python 3 (instalacion tecleando en la terminal ``` winget install python3```) and the following Python libraries:
+To run these scripts, you need Python 3 and the following Python libraries:
 
     * sqlite3 (part of the Python standard library)
     * urllib (for downloading the FIDE files)
@@ -21,11 +21,11 @@ To run these scripts, you need Python 3 (instalacion tecleando en la terminal ``
     * tabulate (for pretty printing the output on the terminal)
     * argparse (for handling command-line arguments)
 
-You will also need to install sqlite3 (teclea en una terminal ``` winget install sqlite.sqlite ```)
+You will also need to install sqlite3 
 
 
 ## Installation
-Install python and sqlite3 (see links in the previous section). From this repository download the files fide_download.py and fide_query.py and all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
+Install python (install typing in a terminal ``` winget install python3```)  and sqlite3 ((type in a erminal ``` winget install sqlite.sqlite ```). From this repository download the files fide_download.py and fide_query.py and all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
 Open a terminal (__cmd__)  and type:
 
 ```
@@ -40,7 +40,7 @@ This script downloads the players_list_xml.zip file from the FIDE website and pr
 ```
 python fide_download.py
 ```
-or alternativelly just double click it.  Depending on your computer and conectivity this step may take one or two  minutes.
+or alternativelly just double click it.  Depending on your computer and conectivity this step may take one or two minutes. Remember that FIDE updates this databases monthly.
 
 The player information includes fields such as fide_id, name, country, sex, title, rating, and others.
 No command-line options are required for this script, as it automatically downloads and processes the FIDE data.
