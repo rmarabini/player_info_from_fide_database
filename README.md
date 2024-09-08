@@ -34,8 +34,7 @@ pip install tabulate
 
 #### FIDE Ratings Download and Storage Script
 
-This script downloads the players_list_xml.zip file from the FIDE website, extracts player data from the XML, and stores it in an SQLite database.
-Script: fide_download.py
+This script downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it as:
 
 ```
 python fide_download.py
