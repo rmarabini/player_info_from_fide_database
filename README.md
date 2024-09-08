@@ -2,7 +2,7 @@
 
 This repository contains two Python scripts to download, store, and query FIDE chess player ratings from the FIDE database. The first script downloads and processes a list of FIDE players, storing their information in an SQLite database. The second script queries the database and outputs player records based on input FIDE IDs.
 
-#Table of Contents
+## Table of Contents
 
 * Requirements
 * Installation
@@ -25,7 +25,7 @@ You will also need to install sqlite3 (https://www.sqlitetutorial.net/download-i
 
 
 ## Installation
-Download the files fide_download.py and fide_query.py from this repository and all the requiered python modules 
+Download the files fide_download.py and fide_query.py from this repository and all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
 
 ```
 pip install tabulate
