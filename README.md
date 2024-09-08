@@ -25,7 +25,7 @@ You will also need to install sqlite3 (teclea en una erminal ``` winget install 
 
 
 ## Installation
-Download the files fide_download.py and fide_query.py from this repository and all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
+Install python and sqlite3 (see links in the previous section). From this repository download the files fide_download.py and fide_query.py and all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
 Open a terminal (__cmd__)  and type:
 
 ```
