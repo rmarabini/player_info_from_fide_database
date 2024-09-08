@@ -95,6 +95,7 @@ def insert_or_update_fide_ratings(conn, players):
     '''
     try:
         c = conn.cursor()
+        c.execute("PRAGMA synchronous = OFF")
         c.executemany(sql, players)
         conn.commit()
     except sqlite3.Error as e:
