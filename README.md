@@ -101,7 +101,7 @@ Suppose you have a file called fide_ids.txt containing the following FIDE IDs:
 22298851
 ```
 
-To query the database for these FIDE IDs and output specific fields (fide_id, name, country, rating) to both the terminal and a CSV file:
+To query the database for these FIDE IDs and output specific fields (fide_id, name, country, rating) to both the terminal and a CSV file (from a terminal (__cmd__) execute):
 
 ```
 python fide_query.py fide_ids.txt output.csv --fields fide_id name country rating
