@@ -1,6 +1,6 @@
 # FIDE Ratings Scripts
 
-This repository contains two Python scripts to download, store, and query FIDE chess player ratings from the FIDE database. The first script downloads and processes a list of FIDE players, storing their information in the local file. The second script queries the file and outputs player records based on input FIDE IDs.
+This repository contains two Python scripts to download, store, and query FIDE chess player ratings from the FIDE database. The first script downloads and processes a list of FIDE players, storing the information in the local file. The second script queries the file and outputs player records based on input FIDE IDs.
 
 ## Table of Contents
 
