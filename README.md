@@ -37,7 +37,7 @@ pip install tabulate
 
 #### FIDE Ratings Download and Storage Script
 
-This script __fide_download.py__ downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it from a terminal (__cmd__) as (in the terminal you must be in the same directory in which you downloaded the scripts):
+The script __fide_download.py__ downloads the players_list_xml.zip file from the FIDE website and preprocess it. Execute it from a terminal (__cmd__) as (in the terminal you must be in the same directory in which you downloaded the scripts):
 
 ```
 python fide_download.py
@@ -49,7 +49,7 @@ No command-line options are required for this script, as it automatically downlo
 
 #### Query FIDE Records and Output to CSV
 
-This script __fide_query.py__ takes a file with FIDE IDs (one per line), retrieves the corresponding records from the downloaded information, and outputs the results to a CSV file. The results are also displayed on the console.
+The script __fide_query.py__ takes a file with FIDE IDs (one per line), retrieves the corresponding records from the downloaded information, and outputs the results to a CSV file. The results are also displayed on the console.
 
 ```
 python fide_query.py <input_file> <output_file.csv> --fields <fields> --database <database>
