@@ -46,7 +46,7 @@ Execute it from a terminal (__cmd__) as (in the terminal you must be in the same
 ```
 python3 fide_download.py
 ```
-or alternativelly just double click it.  Depending on your computer and conectivity this step may take one or two minutes. Remember that FIDE updates this databases monthly.
+Depending on your computer and conectivity this step may take one or two minutes. Remember that FIDE updates this databases monthly.
 
 The player information includes fields such as fide_id, name, country, sex, title, rating, and others.
 No command-line options are required for this script, as it automatically downloads and processes the FIDE data.
