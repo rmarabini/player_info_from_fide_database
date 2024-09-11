@@ -20,6 +20,7 @@ To run these scripts, you need Python 3 and the following Python libraries:
     * xml (for XML parsing)
     * tabulate (for pretty printing the output on the terminal)
     * argparse (for handling command-line arguments)
+    * hashlib (for checking if the FIDE database has been updated)
 
 You will also need to install sqlite3 
 

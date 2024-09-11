@@ -3,6 +3,21 @@ import urllib.request
 import os
 import sqlite3
 import xml.etree.ElementTree as ET
+import hashlib
+
+# Function to compute the hash of a file
+def compute_file_hash(file_name):
+    hash_sha256 = hashlib.sha256()
+    try:
+        with open(file_name, "rb") as f:
+            while True:
+                data = f.read(4096)
+                if not data:
+                    break
+                hash_sha256.update(data)
+        return hash_sha256.hexdigest()
+    except FileNotFoundError:
+        return None
 
 # Function to retrieve the zip file from the FIDE website
 def retrieve_file(file_name):
@@ -90,7 +105,7 @@ def create_table(conn):
 # Function to insert or update player data into the database
 def insert_or_update_fide_ratings(conn, players):
     sql = '''
-    INSERT OR REPLACE INTO fide_ratings(fide_id, name, country, sex, title, rating, games_played, rapid_rating, rapid_games, blitz_rating, blitz_games, birthday)
+    INSERT INTO fide_ratings(fide_id, name, country, sex, title, rating, games_played, rapid_rating, rapid_games, blitz_rating, blitz_games, birthday)
     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     '''
     try:
@@ -100,6 +115,29 @@ def insert_or_update_fide_ratings(conn, players):
         conn.commit()
     except sqlite3.Error as e:
         print(e)
+
+# Function to save the hash of the last file
+def save_last_hash(hash_value):
+    with open("last_hash.txt", "w") as f:
+        f.write(hash_value)
+
+# Function to load the last saved hash
+def load_last_hash():
+    if os.path.exists("last_hash.txt"):
+        with open("last_hash.txt", "r") as f:
+            return f.read().strip()
+    return None
+
+# Function to delete all records from the FIDE ratings table
+def delete_all_records(conn):
+    try:
+        sql = 'DELETE FROM fide_ratings'
+        c = conn.cursor()
+        c.execute(sql)
+        conn.commit()
+        print("cleaning all records from the old table.")
+    except sqlite3.Error as e:
+        print(f"Error deleting records: {e}")
 
 # Main function to orchestrate the downloading, parsing, and saving of FIDE ratings
 def main():
@@ -117,23 +155,40 @@ def main():
 
     # Download, unzip, and parse the XML file
     if retrieve_file(file_name):
-        unzip(file_name)
-        
-        # Check if the XML file exists and parse it
-        if os.path.exists(xml_file_name):
-            players = parse_xml(xml_file_name)
+        # Compute the hash of the newly downloaded file
+        new_file_hash = compute_file_hash(file_name)
 
-            # Insert or update records in the database
-            if players:
-                insert_or_update_fide_ratings(conn, players)
-                print(f"Inserted or updated {len(players)} records from {xml_file_name} into the database.")
-            else:
-                print(f"No players found in {xml_file_name}")
+        # Load the previous file's hash
+        previous_file_hash = load_last_hash()
 
-            # Optionally remove the XML file after processing
-            os.remove(xml_file_name)
+        # Check if the file has changed
+        if new_file_hash == previous_file_hash:
+            print("File has not changed. No need to update the database.")
         else:
-            print(f"Failed to find {xml_file_name}")
+            print("New file detected. Updating the database...")
+            unzip(file_name)
+            
+            # Check if the XML file exists and parse it
+            if os.path.exists(xml_file_name):
+                players = parse_xml(xml_file_name)
+
+                # Delete all records from the database before inserting new data
+                delete_all_records(conn)
+                
+                # Insert or update records in the database
+                if players:
+                    insert_or_update_fide_ratings(conn, players)
+                    print(f"Inserted {len(players)} records from {xml_file_name} into the database.")
+                    
+                    # Save the hash of the new file
+                    save_last_hash(new_file_hash)
+                else:
+                    print(f"No players found in {xml_file_name}")
+
+                # Optionally remove the XML file after processing
+                os.remove(xml_file_name)
+            else:
+                print(f"Failed to find {xml_file_name}")
 
     # Close the database connection
     if conn:
@@ -141,4 +196,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

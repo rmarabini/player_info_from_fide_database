@@ -1,7 +1,12 @@
 import sqlite3
 import csv
 import argparse
-from tabulate import tabulate  # This is used to print a well-formatted table
+try:
+    from tabulate import tabulate  # This is used to print a well-formatted table
+    tabulateDO = True
+except:
+    print("Warning: tabulate module not installed, output will look less pretty")
+    tabulateDO = False 
 
 # Function to read FIDE IDs from the input file
 def read_fide_ids(input_file):
@@ -38,8 +43,13 @@ def write_to_csv(output_file, records, fields):
 def print_to_console(records, fields):
     print("\nFIDE Records:\n")
     if records:
-        # Use tabulate to print a well-formatted table
-        print(tabulate(records, headers=fields, tablefmt='pretty'))
+        if tabulateDO:
+            # Use tabulate to print a well-formatted table
+            print(tabulate(records, headers=fields, tablefmt='pretty'))
+        else:
+            print(fields)
+            for record in records:
+                print(record)
     else:
         print("No records found.")
 
