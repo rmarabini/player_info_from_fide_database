@@ -39,7 +39,7 @@ pip3 install tabulate
 
 #### FIDE Ratings Download and Storage Script
 
-The script __fide_download.py__ (1) downloads the players_list_xml.zip file from the FIDE website, (2) if a local players_list_xml.zip exists the script detects if the new file is different from the last one 
+The script __fide_download.py__ (1) downloads the players_list_xml.zip file from the FIDE website, (2) if a local players_list_xml.zip file exists the script detects if the new file is different from the last one 
 and finally, (3) the downloaded data is preprocess if needed.. 
 Execute it from a terminal (__cmd__) as (in the terminal you must be in the same directory in which you downloaded the scripts):
 
