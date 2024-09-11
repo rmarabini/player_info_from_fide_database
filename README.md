@@ -26,7 +26,7 @@ You will also need to install sqlite3
 
 
 ## Installation
-In the following instalation commands are provided for windows, linux and mac users very likely have all the software needed.
+In the following instalation commands are provided for windows, linux and mac users very likely have all the needed software.
 
 Install python (open a terminal and type ``` winget install python3```)  and sqlite3 (type in the terminal ``` winget install sqlite.sqlite ```). From this repository download the files fide_download.py and fide_query.py.
 Using __pip__ install all the python modules that are not installed by default. Very likely the only one missing is __tabulate__
