@@ -62,7 +62,7 @@ python fide_query.py <input_file> <output_file.csv> --fields <fields> --database
 ###### Arguments:
 
 *    input_file: A file containing FIDE IDs, one per line.
-*    output_file.csv: The CSV file where the results will be saved.
+*    output_file.csv: The CSV file where the results will be saved (extension must be csv).
 *    --fields: (Optional) A space-separated list of fields to include in the output. Default fields are fide_id, name, country, and rating.
 *    --database: (Optional) The SQLite database file. The default is fide_ratings.db.
 
