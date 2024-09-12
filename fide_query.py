@@ -1,18 +1,38 @@
+# /*
+#  * Copyright (c) 2024 R.Marabini
+#  * 
+#  * This program is free software: you can redistribute it and/or modify
+#  * it under the terms of the GNU General Public License as published by
+#  * the Free Software Foundation, version 3.
+#  *
+#  * This program is distributed in the hope that it will be useful, but
+#  * WITHOUT ANY WARRANTY; without even the implied warranty of
+#  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#  * General Public License for more details.
+#  *
+#  * You should have received a copy of the GNU General Public License
+#  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+#  */
+
 import sqlite3
 import csv
 import argparse
 try:
-    from tabulate import tabulate  # This is used to print a well-formatted table
+    # if available tabulate will be used to print a well-formatted table
+    from tabulate import tabulate
     tabulateDO = True
 except:
-    print("Warning: tabulate module not installed, output will look less pretty")
-    tabulateDO = False 
+    print("Warning: tabulate module not installed, "
+          "output will look less pretty")
+    tabulateDO = False
+
 
 # Function to read FIDE IDs from the input file
 def read_fide_ids(input_file):
     with open(input_file, 'r') as file:
         fide_ids = [line.strip() for line in file.readlines()]
     return fide_ids
+
 
 # Function to query the database for the selected FIDE IDs
 def query_fide_records(conn, fide_ids, fields):
@@ -28,6 +48,7 @@ def query_fide_records(conn, fide_ids, fields):
         print(f"An error occurred while querying the database: {e}")
         return []
 
+
 # Function to write the output to a CSV file
 def write_to_csv(output_file, records, fields):
     with open(output_file, 'w', newline='') as csvfile:
@@ -38,6 +59,7 @@ def write_to_csv(output_file, records, fields):
         
         # Write the records
         writer.writerows(records)
+
 
 # Function to print records to the console
 def print_to_console(records, fields):
@@ -52,6 +74,7 @@ def print_to_console(records, fields):
                 print(record)
     else:
         print("No records found.")
+
 
 # Main function to handle command-line arguments and orchestrate the process
 def main():
@@ -83,6 +106,7 @@ def main():
 
     # Print the results to the console
     print_to_console(records, args.fields)
+
 
 if __name__ == "__main__":
     main()

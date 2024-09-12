@@ -1,9 +1,26 @@
+# /*
+#  * Copyright (c) 2024 R.Marabini
+#  * 
+#  * This program is free software: you can redistribute it and/or modify
+#  * it under the terms of the GNU General Public License as published by
+#  * the Free Software Foundation, version 3.
+#  *
+#  * This program is distributed in the hope that it will be useful, but
+#  * WITHOUT ANY WARRANTY; without even the implied warranty of
+#  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#  * General Public License for more details.
+#  *
+#  * You should have received a copy of the GNU General Public License
+#  * along with this program. If not, see <http://www.gnu.org/licenses/>.
+#  */
+
 import zipfile
 import urllib.request
 import os
 import sqlite3
 import xml.etree.ElementTree as ET
 import hashlib
+
 
 # Function to compute the hash of a file
 def compute_file_hash(file_name):
@@ -19,6 +36,7 @@ def compute_file_hash(file_name):
     except FileNotFoundError:
         return None
 
+
 # Function to retrieve the zip file from the FIDE website
 def retrieve_file(file_name):
     print(f"Downloading {file_name}...")
@@ -30,6 +48,7 @@ def retrieve_file(file_name):
         print(f"Failed to retrieve {file_name}: {e}")
         return False
 
+
 # Function to unzip the file
 def unzip(file_name):
     print(f"Unzipping {file_name}...")
@@ -40,6 +59,7 @@ def unzip(file_name):
         print(f"Removed {file_name}")
     except Exception as e:
         print(f"Failed to unzip {file_name}: {e}")
+
 
 # Function to parse the XML and extract player data
 def parse_xml(file_name):
@@ -68,6 +88,7 @@ def parse_xml(file_name):
 
     return players
 
+
 # Function to connect to the SQLite database
 def create_connection(db_file):
     conn = None
@@ -77,6 +98,7 @@ def create_connection(db_file):
     except sqlite3.Error as e:
         print(e)
     return conn
+
 
 # Function to create the table for storing FIDE ratings
 def create_table(conn):
@@ -102,6 +124,7 @@ def create_table(conn):
     except sqlite3.Error as e:
         print(e)
 
+
 # Function to insert or update player data into the database
 def insert_or_update_fide_ratings(conn, players):
     sql = '''
@@ -116,10 +139,12 @@ def insert_or_update_fide_ratings(conn, players):
     except sqlite3.Error as e:
         print(e)
 
+
 # Function to save the hash of the last file
 def save_last_hash(hash_value):
     with open("last_hash.txt", "w") as f:
         f.write(hash_value)
+
 
 # Function to load the last saved hash
 def load_last_hash():
@@ -127,6 +152,7 @@ def load_last_hash():
         with open("last_hash.txt", "r") as f:
             return f.read().strip()
     return None
+
 
 # Function to delete all records from the FIDE ratings table
 def delete_all_records(conn):
@@ -138,6 +164,7 @@ def delete_all_records(conn):
         print("cleaning all records from the old table.")
     except sqlite3.Error as e:
         print(f"Error deleting records: {e}")
+
 
 # Main function to orchestrate the downloading, parsing, and saving of FIDE ratings
 def main():
@@ -193,6 +220,7 @@ def main():
     # Close the database connection
     if conn:
         conn.close()
+
 
 if __name__ == "__main__":
     main()
