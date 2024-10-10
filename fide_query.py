@@ -1,6 +1,6 @@
 # /*
 #  * Copyright (c) 2024 R.Marabini
-#  * 
+#  *
 #  * This program is free software: you can redistribute it and/or modify
 #  * it under the terms of the GNU General Public License as published by
 #  * the Free Software Foundation, version 3.
@@ -37,8 +37,10 @@ def read_fide_ids(input_file):
 # Function to query the database for the selected FIDE IDs
 def query_fide_records(conn, fide_ids, fields):
     # Prepare the SQL query
-    sql = f"SELECT {', '.join(fields)} FROM fide_ratings WHERE fide_id IN ({', '.join(['?']*len(fide_ids))})"
-    
+    sql = f"""SELECT {', '.join(fields)}
+              FROM fide_ratings
+              WHERE fide_id IN ({', '.join(['?']*len(fide_ids))})"""
+
     try:
         cur = conn.cursor()
         cur.execute(sql, fide_ids)
@@ -53,10 +55,10 @@ def query_fide_records(conn, fide_ids, fields):
 def write_to_csv(output_file, records, fields):
     with open(output_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
-        
+
         # Write the header
         writer.writerow(fields)
-        
+
         # Write the records
         writer.writerows(records)
 
@@ -79,13 +81,29 @@ def print_to_console(records, fields):
 # Main function to handle command-line arguments and orchestrate the process
 def main():
     # Set up command-line argument parsing
-    parser = argparse.ArgumentParser(description="Query FIDE ratings by FIDE ID and output results as CSV.")
-    parser.add_argument("input_file", help="File containing FIDE IDs (one per line)")
-    parser.add_argument("output_file", help="CSV file where the output should be saved")
-    parser.add_argument('--fields', nargs='+', default=["fide_id", "name", "country", "rating"], 
-                        help='Fields to include in the output (default: fide_id, name, country, rating). Possible fields: fide_id, name, country, sex, title, rating, games_played, rapid_rating, rapid_games INTEGER, blitz_rating, blitz_games, birthday. Example: python3 pp.py input.txt output.txt --fields "fide_id, name, country, birthday, rating"'
-)
-    parser.add_argument("--database", default="fide_ratings.db", help="SQLite database file (default: fide_ratings.db)")
+    parser = argparse.ArgumentParser(
+        description="Query FIDE ratings by FIDE ID and output results as CSV.")
+    parser.add_argument(
+        "input_file", help="File containing FIDE IDs (one per line)")
+    parser.add_argument(
+        "output_file", help="CSV file where the output should be saved")
+    parser.add_argument(
+        '--fields',
+        nargs='+',
+        default=["fide_id", "name", "country", "rating"], 
+        help="""Fields to include in the output
+            (default: fide_id, name, country, rating).
+             Possible fields: fide_id, name, country, sex, 
+             title, rating, games_played, rapid_rating, rapid_games INTEGER,
+             blitz_rating, blitz_games, birthday. 
+             Example:
+             python3 fide_query.py input.txt output.txt 
+                    --fields "fide_id, name, country, birthday, rating"""   
+    )
+    parser.add_argument(
+        "--database",
+        default="fide_ratings.db",
+        help="SQLite database file (default: fide_ratings.db)")
 
     args = parser.parse_args()
 
@@ -110,4 +128,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
