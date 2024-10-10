@@ -130,7 +130,19 @@ def create_table(conn):
 # Function to insert or update player data into the database
 def insert_or_update_fide_ratings(conn, players):
     sql = '''
-    INSERT INTO fide_ratings(fide_id, name, country, sex, title, rating, games_played, rapid_rating, rapid_games, blitz_rating, blitz_games, birthday)
+    INSERT INTO fide_ratings(
+        fide_id,
+        name,
+        country,
+        sex,
+        title,
+        rating,
+        games_played,
+        rapid_rating,
+        rapid_games,
+        blitz_rating,
+        blitz_games,
+        birthday)
     VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     '''
     try:
@@ -168,7 +180,8 @@ def delete_all_records(conn):
         print(f"Error deleting records: {e}")
 
 
-# Main function to orchestrate the downloading, parsing, and saving of FIDE ratings
+# Main function to orchestrate the downloading, parsing, and saving of 
+# FIDE ratings
 def main():
     # Specify the database file name
     database = "fide_ratings.db"
