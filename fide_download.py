@@ -68,14 +68,16 @@ def parse_xml(file_name):
     root = tree.getroot()
 
     players = []
-    
+
     # Extract player data based on XML structure
     for player in root.findall('player'):
         fide_id = player.find('fideid').text
-        name = player.find('name').text.strip()  # Remove any leading/trailing whitespace
+        # Remove any leading/trailing whitespace
+        name = player.find('name').text.strip()
         country = player.find('country').text
         sex = player.find('sex').text
-        title = player.find('title').text if player.find('title') is not None else None
+        title = player.find('title').text\
+            if player.find('title') is not None else None
         rating = int(player.find('rating').text)
         games = int(player.find('games').text)
         rapid_rating = int(player.find('rapid_rating').text)
@@ -83,7 +85,7 @@ def parse_xml(file_name):
         blitz_rating = int(player.find('blitz_rating').text)
         blitz_games = int(player.find('blitz_games').text)
         birthday = player.find('birthday').text
-        
+
         players.append((fide_id, name, country, sex, title, rating, games, rapid_rating, rapid_games, blitz_rating, blitz_games, birthday))
 
     return players
