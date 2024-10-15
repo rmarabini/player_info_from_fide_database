@@ -53,7 +53,7 @@ No command-line options are required for this script, as it automatically downlo
 
 #### Query FIDE Records and Output to CSV
 
-The script __fide_query.py__ takes a file with FIDE IDs (one per line) created with a text editar as notepad, retrieves the corresponding records from the downloaded information, and outputs the results to a CSV file. The results are also displayed on the console.
+The script __fide_query.py__ takes a file with FIDE IDs (one per line) created with a text editor as notepad, retrieves the corresponding records from the downloaded information, and outputs the results to a CSV file. The results are also displayed on the console.
 
 ```
 python fide_query.py <input_file> <output_file.csv> --fields <fields> --database <database>
