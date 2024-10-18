@@ -26,6 +26,7 @@ HASH_FILE_NAME = "last_hash.txt"
 
 # Function to compute the hash of a file
 def compute_file_hash(file_name):
+    kk = 0
     hash_sha256 = hashlib.sha256()
     try:
         with open(file_name, "rb") as f:
