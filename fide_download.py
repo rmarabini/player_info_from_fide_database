@@ -21,7 +21,6 @@ import sqlite3
 import xml.etree.ElementTree as ET
 import hashlib
 
-
 HASH_FILE_NAME = "last_hash.txt"
 
 
