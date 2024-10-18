@@ -43,7 +43,7 @@ def compute_file_hash(file_name):
 def retrieve_file(file_name):
     print(f"Downloading {file_name}...")
     try:
-        urllib.request.urlretrieve(f"http://ratings.fide.com/download/{file_name}", file_name)
+        urllib.request.urlretrieve(f"https://ratings.fide.com/download/{file_name}", file_name)
         print(f"Retrieved {file_name} successfully.")
         return True
     except Exception as e:
