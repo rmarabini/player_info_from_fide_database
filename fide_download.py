@@ -20,10 +20,11 @@ import os
 import sqlite3
 import xml.etree.ElementTree as ET
 import hashlib
+import sys
 
 
 HASH_FILE_NAME = "last_hash.txt"
-kk=0
+
 
 # Function to compute the hash of a file
 def compute_file_hash(file_name):
