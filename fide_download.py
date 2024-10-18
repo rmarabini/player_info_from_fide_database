@@ -22,6 +22,9 @@ import xml.etree.ElementTree as ET
 import hashlib
 
 
+HASH_FILE_NAME = "last_hash.txt"
+
+
 # Function to compute the hash of a file
 def compute_file_hash(file_name):
     hash_sha256 = hashlib.sha256()
@@ -99,7 +102,7 @@ def create_connection(db_file):
         return conn
     except sqlite3.Error as e:
         print(e)
-    return conn
+    return None
 
 
 # Function to create the table for storing FIDE ratings
@@ -156,14 +159,14 @@ def insert_or_update_fide_ratings(conn, players):
 
 # Function to save the hash of the last file
 def save_last_hash(hash_value):
-    with open("last_hash.txt", "w") as f:
+    with open(HASH_FILE_NAME, "w") as f:
         f.write(hash_value)
 
 
 # Function to load the last saved hash
 def load_last_hash():
-    if os.path.exists("last_hash.txt"):
-        with open("last_hash.txt", "r") as f:
+    if os.path.exists(HASH_FILE_NAME):
+        with open(HASH_FILE_NAME, "r") as f:
             return f.read().strip()
     return None
 

@@ -21,7 +21,7 @@ try:
     # if available tabulate will be used to print a well-formatted table
     from tabulate import tabulate
     tabulateDO = True
-except:
+except ImportError:
     print("Warning: tabulate module not installed, "
           "output will look less pretty")
     tabulateDO = False
@@ -90,15 +90,15 @@ def main():
     parser.add_argument(
         '--fields',
         nargs='+',
-        default=["fide_id", "name", "country", "rating"], 
+        default=["fide_id", "name", "country", "rating"],
         help="""Fields to include in the output
             (default: fide_id, name, country, rating).
-             Possible fields: fide_id, name, country, sex, 
+             Possible fields: fide_id, name, country, sex,
              title, rating, games_played, rapid_rating, rapid_games INTEGER,
-             blitz_rating, blitz_games, birthday. 
+             blitz_rating, blitz_games, birthday.
              Example:
-             python3 fide_query.py input.txt output.txt 
-                    --fields "fide_id, name, country, birthday, rating"""   
+             python3 fide_query.py input.txt output.txt
+                    --fields "fide_id, name, country, birthday, rating"""
     )
     parser.add_argument(
         "--database",
