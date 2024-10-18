@@ -26,7 +26,6 @@ HASH_FILE_NAME = "last_hash.txt"
 
 # Function to compute the hash of a file
 def compute_file_hash(file_name):
-    kk = 10
     hash_sha256 = hashlib.sha256()
     try:
         with open(file_name, "rb") as f:
@@ -44,7 +43,7 @@ def compute_file_hash(file_name):
 def retrieve_file(file_name):
     print(f"Downloading {file_name}...")
     try:
-        urllib.request.urlretrieve(f"https://ratings.fide.com/download/{file_name}", file_name)
+        urllib.request.urlretrieve(f"http://ratings.fide.com/download/{file_name}", file_name)
         print(f"Retrieved {file_name} successfully.")
         return True
     except Exception as e:
