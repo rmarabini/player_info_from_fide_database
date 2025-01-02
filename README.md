@@ -140,3 +140,4 @@ fide_id,name,country,rating
 
 this file may be read from excel or similar programs.
 
+### You may be interested in this project (https://github.com/rmarabini/get_fide_rating_with_scrapy) where equivalent information is scraped from the web page
